@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title%}
+    Login
+{% endblock %}
+
+{% block content%}
+    <h1> Search </h1><br>
+    <form action="/" method="GET">
+        user_id: <input name="user_id" type="text">
+        <input type="submit" >
+    </form>
+    {% if not_find %}
+            <h2>this user is not in our DB</h2>
+    {% endif %}
+    {% if user_name %}
+        <h2>user information: </h2>
+        <h3>name: {{ user_name }}</h3>
+        <h3>email: {{ email }}</h3>
+        <h3>phone number: {{ phone }}</h3>
+    {% else %}
+        {% if users_list %}
+        <h2>All the results:</h2>
+         <ul>
+         {% for id, info in users_list.items() %}
+              <li>  {{ id }} </li>
+               {% for key in info %}
+                  {{ key }} : {{ info[key] }} |
+              {% endfor %}
+               <p></p>
+         {% endfor %}
+         </ul>
+        {% endif %}
+    {% endif %}
+
+    {% if session.username %}
+
+    {% else %}
+        <h1> Please Login </h1><br>
+        <form action="/" method="POST">
+    user name: <input name="username" type="text">
+   password:  <input name="password" type="password">
+        <input type="submit">
+    </form>
+    {% endif %}
+
+{% endblock %}

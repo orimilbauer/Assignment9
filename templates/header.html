@@ -1,0 +1,7 @@
+<header>
+    <a href="/"> assignment9 </a> |
+    {% if session.username%}
+        <a href="/logout">logout</a><br>
+         <h1> welecome back, {{ session.username | default('guset',true) }}</h1>
+    {% endif %}
+</header>
